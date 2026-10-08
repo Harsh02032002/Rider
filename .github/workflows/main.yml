@@ -33,17 +33,6 @@ jobs:
           chmod +x ./node_modules/.bin/expo
           npx expo prebuild --platform android --no-install
 
-      - name: Fix Splash Screen Color
-        run: |
-          mkdir -p android/app/src/main/res/values
-          if [ -f android/app/src/main/res/values/colors.xml ]; then
-            sed -i 's/<\/resources>//g' android/app/src/main/res/values/colors.xml
-            echo '    <color name="splashscreen_background">#059669</color>' >> android/app/src/main/res/values/colors.xml
-            echo '</resources>' >> android/app/src/main/res/values/colors.xml
-          else
-            echo '<?xml version="1.0" encoding="utf-8"?><resources><color name="splashscreen_background">#059669</color></resources>' > android/app/src/main/res/values/colors.xml
-          fi
-
       - name: Build Release APK
         working-directory: android
         run: |
