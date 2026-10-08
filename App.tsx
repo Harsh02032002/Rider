@@ -372,9 +372,9 @@ export default function App() {
 
               <View style={styles.infoCard}>
                 <Text style={styles.infoTitle}>Incentives & Tips Breakdown</Text>
-                <View style={styles.lineRow}><span>Order Pay</span><span style={styles.bold}>₹980</span></View>
-                <View style={styles.lineRow}><span>Customer Tips</span><span style={styles.bold}>₹160</span></View>
-                <View style={styles.lineRow}><span>Peak Surge Bonus</span><span style={styles.bold}>₹100</span></View>
+                <View style={styles.lineRow}><Text>Order Pay</Text><Text style={styles.bold}>₹980</Text></View>
+                <View style={styles.lineRow}><Text>Customer Tips</Text><Text style={styles.bold}>₹160</Text></View>
+                <View style={styles.lineRow}><Text>Peak Surge Bonus</Text><Text style={styles.bold}>₹100</Text></View>
               </View>
             </ScrollView>
           )}
@@ -560,6 +560,8 @@ const styles = StyleSheet.create({
   alertLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+    paddingRight: 8,
   },
   pulseDot: {
     width: 8,
