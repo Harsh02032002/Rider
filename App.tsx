@@ -224,7 +224,7 @@ export default function App() {
                   </View>
                 </View>
 
-                <View style={styles.locRow} style={{ marginTop: 12 }}>
+                <View style={[styles.locRow, { marginTop: 12 }]}>
                   <View style={styles.homeIconCircle}>
                     <Home size={16} color={COLORS.white} />
                   </View>
@@ -262,10 +262,10 @@ export default function App() {
               <View style={styles.mapCard}>
                 <View style={styles.mapCanvas}>
                   <View style={styles.roadHorizontal} />
-                  <View style={styles.riderPin} style={{ left: '30%' }}>
+                  <View style={[styles.riderPin, { left: '30%' }]}>
                     <Navigation size={18} color={COLORS.white} style={{ transform: [{ rotate: '45deg' }] }} />
                   </View>
-                  <View style={styles.storeIconCircle} style={{ position: 'absolute', right: '30%', width: 36, height: 36 }}>
+                  <View style={[styles.storeIconCircle, { position: 'absolute', right: '30%', width: 36, height: 36 }]}>
                     <Store size={18} color={COLORS.white} />
                   </View>
                 </View>
@@ -313,10 +313,10 @@ export default function App() {
               <View style={styles.mapCard}>
                 <View style={styles.mapCanvas}>
                   <View style={styles.roadHorizontal} />
-                  <View style={styles.riderPin} style={{ left: '40%' }}>
+                  <View style={[styles.riderPin, { left: '40%' }]}>
                     <Navigation size={18} color={COLORS.white} style={{ transform: [{ rotate: '45deg' }] }} />
                   </View>
-                  <View style={styles.homeIconCircle} style={{ position: 'absolute', right: '25%', width: 36, height: 36 }}>
+                  <View style={[styles.homeIconCircle, { position: 'absolute', right: '25%', width: 36, height: 36 }]}>
                     <Home size={18} color={COLORS.white} />
                   </View>
                 </View>
