@@ -1,0 +1,56 @@
+name: Build Rider App APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build Android project
+        run: npx expo prebuild --platform android --no-install
+
+      - name: Fix Splash Screen Color
+        run: |
+          mkdir -p android/app/src/main/res/values
+          if [ -f android/app/src/main/res/values/colors.xml ]; then
+            sed -i 's/<\/resources>//g' android/app/src/main/res/values/colors.xml
+            echo '    <color name="splashscreen_background">#059669</color>' >> android/app/src/main/res/values/colors.xml
+            echo '</resources>' >> android/app/src/main/res/values/colors.xml
+          else
+            echo '<?xml version="1.0" encoding="utf-8"?><resources><color name="splashscreen_background">#059669</color></resources>' > android/app/src/main/res/values/colors.xml
+          fi
+
+      - name: Build Release APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: rider-android-apk
+          path: android/app/build/outputs/apk/release/*.apk
